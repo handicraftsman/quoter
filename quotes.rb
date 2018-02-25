@@ -47,8 +47,9 @@ def get_page_amount
     return 1
   else
     max = 0
+    puts rows.inspect
     unless rows.empty?
-      max = rows[0][0]
+      max = if rows[0][0] then rows[0][0] else 0 end
     end
     amount = (max/10.0).ceil
     amount = 1 if amount == 0

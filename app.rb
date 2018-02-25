@@ -83,8 +83,9 @@ post '/add' do
   rows = $db.execute('SELECT MAX(id) FROM quotes;')
   id = 0
   unless rows.empty?
-    unless rows[0][0] == 0
-      id = rows[0][0] + 1
+    _id = if rows[0][0] then rows[0][0] else 0 end
+    unless _id == 0
+      id = _id + 1
     end
   end
   $db.execute('INSERT INTO quotes (id, quote, author) VALUES (?, ?, ?);', [id, quote, user])

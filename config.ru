@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'thread'
 
-$enable_register = false
+$enable_register = true
 $ban_unregistered = true
 
 configure do
