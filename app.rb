@@ -84,7 +84,7 @@ post '/add' do
   id = 0
   unless rows.empty?
     _id = if rows[0][0] then rows[0][0] else 0 end
-    unless _id == 0
+    if _id == 0
       id = _id + 1
     end
   end
