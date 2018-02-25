@@ -10,13 +10,13 @@
   %ul.pagination
     %li.page-item(style="margin-top: 16px; margin-bottom: 16px; margin-left: auto")
       %a.page-link(href="/?offset=#{0}") <<
-    - if @offset > 0 == false
+    - if @offset > 0
       %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
         %a.page-link(href="/?offset=#{@offset-1}") <
     %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
       %a.page-link(href="#")
         = @offset
-    - if @offset < pga-1 == false
+    - if @offset < pga-1
       %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
         %a.page-link(href="/?offset=#{@offset+1}") >
     %li.page-item(style="margin-top: 16px; margin-bottom: 16px; margin-right: auto")
