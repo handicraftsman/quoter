@@ -1,0 +1,8 @@
+%div.card(style="margin-top: 16px")
+  %div.card-body
+    %h5.card-title Add a Quote
+    %form(action="/add" method="post")
+      %div.form-group
+        %textarea.form-control(name="quote" placeholder="Your Quote Here" minlength="64" required)
+      %div.form-group
+        %button.btn.btn-primary(type="Submit") Add

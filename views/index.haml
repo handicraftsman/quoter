@@ -1,0 +1,23 @@
+- for quote in get_quotes(@offset)
+  %div.card(style="margin-top: 16px")
+    %div.card-body
+      %pre
+        &= quote["quote"]
+    %div.card-footer
+      &= "By #{quote["author"]}"
+%nav(aria-label="Page Navigation")
+  - pga = get_page_amount
+  %ul.pagination
+    %li.page-item(style="margin-top: 16px; margin-bottom: 16px; margin-left: auto")
+      %a.page-link(href="/?offset=#{0}") <<
+    - if @offset > 0 == false
+      %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
+        %a.page-link(href="/?offset=#{@offset-1}") <
+    %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
+      %a.page-link(href="#")
+        = @offset
+    - if @offset < pga-1 == false
+      %li.page-item(style="margin-top: 16px; margin-bottom: 16px;")
+        %a.page-link(href="/?offset=#{@offset+1}") >
+    %li.page-item(style="margin-top: 16px; margin-bottom: 16px; margin-right: auto")
+      %a.page-link(href="/?offset=#{pga}") >>

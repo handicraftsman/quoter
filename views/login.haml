@@ -1,0 +1,10 @@
+%div.card(style="margin-top: 16px")
+  %div.card-body
+    %h5.card-title Log In
+    %form(action="/login" method="post")
+      %div.form-group
+        %input.form-control(type="text" name="username" placeholder="Username" maxlength="64" required)
+      %div.form-group
+        %input.form-control(type="password" name="password" placeholder="Password" maxlength="32" required)
+      %div.form-group
+        %button.btn.btn-primary(type="Submit") Log In

@@ -1,0 +1,29 @@
+- require './tools'
+!!!
+%html
+  %head
+    %meta(charset="UTF-8")
+    %title Quoter
+    %link(rel="stylesheet" href="/css/bootstrap.min.css")
+    %link(rel="stylesheet" href="/css/bootstrap-grid.min.css")
+    %link(rel="stylesheet" href="/css/bootstrap-reboot.min.css")
+    %script(src="/js/jquery.min.js")
+    %script(src="/js/popper.min.js")
+    %script(src="/js/bootstrap.min.js")
+    %script(src="/js/turbolinks.min.js")
+  %body
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top
+      %a.navbar-brand(href="#") Quoter
+      %button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+        %span.navbar-toggler-icon
+      %div#navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          = nav_item 'Home', 'home', '/'
+          - if session[:token]
+            = nav_item 'Log Out', 'logout', '/logout'
+            = nav_item 'Add a Quote', 'add', '/add'
+          - else
+            = nav_item 'Log In', 'login', '/login'
+            = nav_item 'Register', 'register', '/register'
+    %div.container
+      = yield
