@@ -80,8 +80,13 @@ post '/add' do
   return redirect '/fail' unless token
   user = valid_token?(token)
   return redirect '/fail' unless user
-  id = $db.execute('SELECT MAX(id) FROM quotes;')[0][0]
-  id = if id then id + 1 else 0 end
+  rows = $db.execute('SELECT MAX(id) FROM quotes;')
+  id = 0
+  unless rows.empty?
+    unless rows[0][0] == 0
+      id = rows[0][0] + 1
+    end
+  end
   $db.execute('INSERT INTO quotes (id, quote, author) VALUES (?, ?, ?);', [id, quote, user])
   redirect '/'
 end

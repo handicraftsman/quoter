@@ -4,8 +4,13 @@ post '/quotes/add' do
   token = request[:token]
   user = valid_token?(token)
   return 403 unless user
-  id = $db.execute('SELECT MAX(id) FROM quotes;')[0][0]
-  id = if id then id + 1 else 0 end
+  rows = $db.execute('SELECT MAX(id) FROM quotes;')
+  id = 0
+  unless rows.empty?
+    unless rows[0][0] == 0
+      id = rows[0][0] + 1
+    end
+  end
   $db.execute('INSERT INTO quotes (id, quote, author) VALUES (?, ?, ?);', [id, quote, user])
   {
     'id' => id
@@ -41,7 +46,11 @@ def get_page_amount
   if rows.empty?
     return 1
   else
-    amount = (rows[0][0]/10.0).ceil
+    max = 0
+    unless rows.empty?
+      max = rows[0][0]
+    end
+    amount = (max/10.0).ceil
     amount = 1 if amount == 0
     return amount
   end
